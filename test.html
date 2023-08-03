@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Notification APIの最小限の例</title>
+</head>
+<body>
+
+<!-- 通知の許可を求めるボタン -->
+<button onclick="requestNotificationPermission()">通知を許可する</button>
+
+<!-- 通知するイベントを発行するボタン -->
+<button onclick="sendNotification()">通知を送信する</button>
+
+<script>
+// ブラウザがNotification APIをサポートしているかを確認
+if ("Notification" in window) {
+  function requestNotificationPermission() {
+    // 通知の許可を要求
+    Notification.requestPermission().then(function (permission) {
+      if (permission === "granted") {
+        console.log("通知の許可が得られました！");
+      }
+    });
+  }
+
+  function sendNotification() {
+    // 通知を作成して表示
+    var notification = new Notification("通知が来ました！", {
+      body: "Notification APIの最小限の例です。",
+    });
+  }
+}
+</script>
+
+</body>
+</html>
